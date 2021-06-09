@@ -25,11 +25,13 @@ private let yearGroup = 1
 private let monthGroup = 2
 private let dayGroup = 3
 
-public class ZHDateParser: Parser {
+public class ZHDateParser: Parser
+{
     override var pattern: String { return PATTERN }
     override var language: Language { return .chinese }
     
-    override public func extract(text: String, ref: Date, match: NSTextCheckingResult, opt: [OptionType: Int]) -> ParsedResult? {
+    override public func extract(text: String, ref: Date, match: NSTextCheckingResult, opt: [OptionType: Int]) -> ParsedResult?
+	{
         let (matchText, index) = matchTextAndIndexForCHHant(from: text, andMatchResult: match)
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         

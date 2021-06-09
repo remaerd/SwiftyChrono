@@ -17,18 +17,18 @@ private let PATTERN =
 private let prefixGroup = 1
 private let weekdayGroup = 2
 
-public class ZHWeekdayParser: Parser {
+public class ZHWeekdayParser: Parser
+{
     override var pattern: String { return PATTERN }
     override var language: Language { return .chinese }
     
-    override public func extract(text: String, ref: Date, match: NSTextCheckingResult, opt: [OptionType: Int]) -> ParsedResult? {
+    override public func extract(text: String, ref: Date, match: NSTextCheckingResult, opt: [OptionType: Int]) -> ParsedResult?
+	{
         let (matchText, index) = matchTextAndIndexForCHHant(from: text, andMatchResult: match)
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
         let dayOfWeek = match.string(from: text, atRangeIndex: weekdayGroup)
-        guard let offset = ZH_WEEKDAY_OFFSET[dayOfWeek] else {
-            return nil
-        }
+        guard let offset = ZH_WEEKDAY_OFFSET[dayOfWeek] else { return nil }
         
         var modifier = ""
         let prefix = match.isNotEmpty(atRangeIndex: prefixGroup) ? match.string(from: text, atRangeIndex: prefixGroup) : ""

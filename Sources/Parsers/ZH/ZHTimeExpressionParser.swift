@@ -404,9 +404,9 @@ public class ZHTimeExpressionParser: Parser {
         result.text = result.text + match.string(from: secondText, atRangeIndex: 0)
         result.end!.assign(.hour, value: hour)
         result.end!.assign(.minute, value: minute)
-        if meridiem >= 0 {
-            result.end!.assign(.meridiem, value: meridiem)
-        } else {
+        if meridiem >= 0 { result.end!.assign(.meridiem, value: meridiem) }
+		else
+		{
             let startAtPM = result.start.isCertain(component: .meridiem) && result.start[.meridiem] == 1
             if startAtPM && result.start[.hour]! > hour {
                 // 10pm - 1 (am)

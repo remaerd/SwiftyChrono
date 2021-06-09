@@ -26,7 +26,7 @@ public class ZHDeadlineFormatParser: Parser {
         var result = ParsedResult(ref: ref, index: index, text: matchText)
         
         let refMoment = ref
-        let startMoment = refMoment
+		_ = refMoment
         
         let numberString = match.string(from: text, atRangeIndex: numberGroup)
         let number: Int
@@ -45,8 +45,8 @@ public class ZHDeadlineFormatParser: Parser {
         }
         
         var date = ref
-        var unit = match.string(from: text, atRangeIndex: unitGroup)
-        var unitAbbr = unit.firstString ?? ""
+		let unit = match.string(from: text, atRangeIndex: unitGroup)
+		let unitAbbr = unit.firstString ?? ""
         result.tags[.zhHantDeadlineFormatParser] = true
         
         func ymdResult() -> ParsedResult {
